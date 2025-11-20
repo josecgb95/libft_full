@@ -6,9 +6,11 @@
 #    By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 08:28:12 by jose              #+#    #+#              #
-#    Updated: 2025/11/19 15:59:09 by jose-car         ###   ########.fr        #
+#    Updated: 2025/11/20 15:28:46 by jose-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+MAKEFLAGS = --silent -j
 
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
@@ -47,13 +49,14 @@ AR				=	ar rcs
 RM				=	rm -f
 
 all:			$(NAME)
-				@echo -e "$(GREEN)Compiled libft -> $(NAME)$(NC)"
+				@printf "\033[2K\r"
+				@printf "$(GREEN)Compiled libft -> $(NAME)$(NC)\n"
 
 $(OBJDIR):
 				mkdir -p $(OBJDIR)/libft $(OBJDIR)/ft_printf $(OBJDIR)/get_next_line
 
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
-				$(CC) $(CFLAGS) -c $< -o $@
+				@$(CC) $(CFLAGS) -c $< -o $@ && printf "\033[2K\r$(GREEN)Compiling:$(NC) $<"
 
 $(NAME):		$(OBJS)
 				$(AR) $(NAME) $(OBJS)
@@ -61,12 +64,13 @@ $(NAME):		$(OBJS)
 clean:
 				$(RM) $(OBJS)
 				@rm -rf $(OBJDIR)
-				@echo -e "$(YELLOW)Deleted objects$(NC)"
+				@printf "$(YELLOW)Deleted objects$(NC)\n"
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@echo -e "$(RED)Deleted library$(NC)"
+				@printf "$(RED)Deleted library$(NC)\n"
 
-re:				fclean all
+re::				fclean 
+re::				all
 
 .PHONY:			all clean fclean re
