@@ -1,33 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_alloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 09:16:49 by jose-car          #+#    #+#             */
-/*   Updated: 2025/11/28 20:05:07 by jose-car         ###   ########.fr       */
+/*   Created: 2025/12/04 15:01:41 by jose-car          #+#    #+#             */
+/*   Updated: 2025/12/04 15:01:55 by jose-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*p_m;
+
+	if (size != 0 && nmemb > SIZE_MAX / size)
+		return (NULL);
+	p_m = malloc(nmemb * size);
+	if (!p_m)
+		return (NULL);
+	ft_bzero(p_m, nmemb * size);
+	return (p_m);
+}
+
+void	ft_bzero(void *s, size_t n)
 {
 	size_t			i;
-	unsigned char	*p_s1;
-	unsigned char	*p_s2;
+	unsigned char	*z;
 
 	i = 0;
-	p_s1 = (unsigned char *) s1;
-	p_s2 = (unsigned char *) s2;
+	z = (unsigned char *) s;
 	while (i < n)
 	{
-		if (p_s1[i] != p_s2[i])
-		{
-			return (p_s1[i] - p_s2[i]);
-		}
+		z[i] = 0;
 		i++;
 	}
-	return (0);
 }
