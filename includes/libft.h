@@ -6,7 +6,7 @@
 /*   By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 13:27:51 by jose              #+#    #+#             */
-/*   Updated: 2025/11/29 09:47:44 by jose-car         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:09:47 by jose-car         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *nptr);
+long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 void	ft_putchar_fd(char c, int fd);
