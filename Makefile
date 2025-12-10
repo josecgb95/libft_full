@@ -6,7 +6,7 @@
 #    By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 08:28:12 by jose              #+#    #+#              #
-#    Updated: 2025/12/04 15:04:25 by jose-car         ###   ########.fr        #
+#    Updated: 2025/12/10 16:45:44 by jose-car         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS_LIBFT		=	ft_str_01.c \
 					ft_mem_01.c \
 					ft_mem_02.c \
 					ft_put.c \
-					ft_from_to.c \
+					ft_parse.c \
 					ft_alloc.c \
 					ft_to_low_upe.c \
 					ft_split.c \
@@ -45,7 +45,7 @@ OBJS			=	$(SRCS:src/%.c=$(OBJDIR)/%.o)
 NAME			=	libft.a
 
 CC				=	cc
-CFLAGS			=	-Wall -Wextra -Werror -I .
+CFLAGS			=	-Wall -Wextra -Werror
 AR				=	ar rcs
 RM				=	rm -f
 
@@ -64,11 +64,11 @@ $(NAME):		$(OBJS)
 clean:
 				$(RM) $(OBJS)
 				@rm -rf $(OBJDIR)
-				@printf "$(YELLOW)🧹​ Deleted objects libft$(NC)\n"
+				@printf "$(YELLOW)🧹​ Removed objects libft$(NC)\n"
 
 fclean:			clean
 				@$(RM) $(NAME)
-				@printf "$(RED)🧹 Deleted library libft$(NC)\n"
+				@printf "$(RED)🧹 Removed library libft.a$(NC)\n"
 
 re::				fclean
 re::				all

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_from_to.c                                       :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:59:36 by jose-car          #+#    #+#             */
-/*   Updated: 2025/12/04 15:07:35 by jose-car         ###   ########.fr       */
+/*   Updated: 2025/12/10 22:29:51 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ long	ft_atol(const char *str)
 	while (*str >= '0' && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
+		if ((result * sign) < INT_MIN || (result * sign) > INT_MAX)
+		{
+			ft_printf("Error\n");
+			exit(1);
+		}
 		str++;
 	}
 	return (result * sign);
