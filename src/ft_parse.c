@@ -6,11 +6,18 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:59:36 by jose-car          #+#    #+#             */
-/*   Updated: 2025/12/10 22:29:51 by jose             ###   ########.fr       */
+/*   Updated: 2025/12/15 15:25:06 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		return (-n);
+	return (n);
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -38,13 +45,14 @@ int	ft_atoi(const char *nptr)
 }
 
 // Convert from string to long (detect int overflow)
-long	ft_atol(const char *str)
+long	ft_atol(const char *str, int *error)
 {
 	long	result;
 	int		sign;
 
 	result = 0;
 	sign = 1;
+	*error = 0;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == '+' || *str == '-')
@@ -55,12 +63,9 @@ long	ft_atol(const char *str)
 	}
 	while (*str >= '0' && *str <= '9')
 	{
+		if (result > (LONG_MAX - (*str - '0')) / 10)
+			*error = 1;
 		result = result * 10 + (*str - '0');
-		if ((result * sign) < INT_MIN || (result * sign) > INT_MAX)
-		{
-			ft_printf("Error\n");
-			exit(1);
-		}
 		str++;
 	}
 	return (result * sign);
