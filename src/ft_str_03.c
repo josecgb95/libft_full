@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str03.c                                         :+:      :+:    :+:   */
+/*   ft_str_03.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jose-car <jose-car@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 09:39:46 by jose-car          #+#    #+#             */
-/*   Updated: 2025/11/29 09:41:07 by jose-car         ###   ########.fr       */
+/*   Updated: 2025/12/16 11:23:07 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -20,9 +30,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	while ((s1[i] || s2[i]) && i < n)
 	{
 		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-		{
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		}
 		i++;
 	}
 	return (0);
